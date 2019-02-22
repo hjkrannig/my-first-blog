@@ -35,7 +35,9 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.published_date = timezone.now()
+            #sollte hier nicht mehr verändert werden. Es wurde ja 
+            #nur verbessert. Später gibt es die post_not_published_list!
+            #post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
