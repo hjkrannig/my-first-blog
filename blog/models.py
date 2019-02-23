@@ -17,3 +17,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def getAuthorName(self):
+        """Liefert nur den Vornamen, da sonst der Anmeldenamen
+        öffentlich wird!"""
+        author_name = self.author.first_name
+        return author_name
+

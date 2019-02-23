@@ -24,6 +24,7 @@ SECRET_KEY = '$m=^zqgxs+_1wz78osqffwjk1=$2ckyj$7%2igyk*l@l%l#&w1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
@@ -55,8 +56,13 @@ ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
     {
+        # django backend
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+
+        # Zentrales template-dir in Projektordner:
+        'DIRS': [os.path.join(BASE_DIR, "mysite/templates")],
+        
+        # templates-dir in jeder app wird durchsucht:
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

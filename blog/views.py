@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import Post
 from .forms import PostForm
@@ -50,7 +50,7 @@ def post_edit(request, pk):
 @login_required
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True)
-    posts = posts.order_by('created_date')
+    posts = posts.order_by('-created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
 @login_required
@@ -60,9 +60,11 @@ def post_publish(request, pk):
     return redirect('post_detail', pk=pk)
 
 @login_required
+@permission_required('post.can_delete', raise_exception=True)
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
 
 
+# ...ab hier Helferfunktionen
