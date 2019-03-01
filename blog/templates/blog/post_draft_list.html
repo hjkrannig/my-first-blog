@@ -6,8 +6,8 @@
             by {{ post.getAuthorName }}</p>
             <h2><a href="{% url 'post_detail' pk=post.pk %}">
             {{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <p>{{ post.getTextFirstLine|linebreaksbr }}</p>
         </div>
+        <hr>
     {% endfor %}
 {% endblock content %}
-
