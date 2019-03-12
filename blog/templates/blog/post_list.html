@@ -9,7 +9,7 @@
                     Kommentare: {{ post.comments.count }}</a>
                 {% else %}
                     <a href="{% url 'post_detail' pk=post.pk %}">
-                    Kommentare: { post.approved_comments.count }}</a>
+			    Kommentare: {{ post.approved_comments.count }}</a>
                 {% endif %}
             </div>
             <h2><a href="{% url 'post_detail' pk=post.pk %}">
